@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\conditional_fields\Form;
+namespace Drupal\field_states_ui\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -24,7 +24,7 @@ class ConditionalFieldForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    module_load_include('inc', 'conditional_fields', 'conditional_fields.conditions');
+    module_load_include('inc', 'field_states_ui', 'field_states_ui.conditions');
 
     $entity_type_options = \Drupal::entityTypeManager()->getDefinitions();
     foreach ($entity_type_options as $key => $entity_type) {
@@ -131,7 +131,7 @@ class ConditionalFieldForm extends FormBase {
       }
       $settings[$key] = $value;
     }
-    $settings += conditional_fields_dependency_default_settings();
+    $settings += field_states_ui_dependency_default_settings();
     $component_value['settings'] = $settings;
 
     $component_value['entity_type'] = $form_state->getValue('entity_type');
@@ -143,7 +143,7 @@ class ConditionalFieldForm extends FormBase {
     /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $entity */
     $entity = entity_get_form_display($component_value['entity_type'], $component_value['bundle'], 'default');
     $field = $entity->getComponent($field_name);
-    $field['third_party_settings']['conditional_fields'][$uuid] = $component_value;
+    $field['third_party_settings']['field_states_ui'][$uuid] = $component_value;
     $entity->setComponent($field_name, $field);
     $entity->save();
     $form_state->setRedirect(
@@ -188,11 +188,11 @@ class ConditionalFieldForm extends FormBase {
     $form_display_entity = entity_get_form_display($entity_type, $bundle_name, 'default');
     foreach ($fields as $field_name => $label) {
       $field = $form_display_entity->getComponent($field_name);
-      if (empty($field['third_party_settings']['conditional_fields'])) {
+      if (empty($field['third_party_settings']['field_states_ui'])) {
         continue;
       }
       // Create row for existing field's conditions.
-      foreach ($field['third_party_settings']['conditional_fields'] as $uuid => $condition) {
+      foreach ($field['third_party_settings']['field_states_ui'] as $uuid => $condition) {
         $form['table'][] = [
           'dependent' => ['#markup' => $field_name],
           'dependee' => ['#markup' => $condition['dependee']],

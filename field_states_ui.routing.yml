@@ -1,20 +1,20 @@
 conditional_fields:
   path: '/admin/content/conditional_field'
   defaults:
-    _form: '\Drupal\conditional_fields\Form\ConditionalFieldForm'
+    _form: '\Drupal\field_states_ui\Form\ConditionalFieldForm'
   requirements:
     _permission: 'add conditional fields'
 
 conditional_fields.edit_form:
   path: '/admin/content/conditional_field/edit/{entity_type}/{bundle}/{field_name}/{uuid}'
   defaults:
-    _form: '\Drupal\conditional_fields\Form\ConditionalFieldEditForm'
+    _form: '\Drupal\field_states_ui\Form\ConditionalFieldEditForm'
   requirements:
     _permission: 'edit conditional fields'
 
 conditional_fields.delete_form:
   path: '/admin/content/conditional_field/delete/{entity_type}/{bundle}/{field_name}/{uuid}'
   defaults:
-    _form: '\Drupal\conditional_fields\Form\ConditionalFieldDeleteForm'
+    _form: '\Drupal\field_states_ui\Form\ConditionalFieldDeleteForm'
   requirements:
     _permission: 'delete conditional fields'

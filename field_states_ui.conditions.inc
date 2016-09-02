@@ -9,8 +9,10 @@
  */
 function conditional_fields_states() {
   $states = array(
+    'field_state_visible' => t('Visible'),
+    'field_state_invisible' => t('Invisible'),
     // Supported by States API.
-    'visible'    => t('Visible'),
+    /*'visible'    => t('Visible'),
     '!visible'   => t('Invisible'),
     '!empty'     => t('Filled with a value'),
     'empty'      => t('Emptied'),
@@ -23,7 +25,7 @@ function conditional_fields_states() {
     '!collapsed' => t('Expanded'),
     'collapsed'  => t('Collapsed'),
     // Supported by Conditional Fields.
-    'unchanged'  => t('Unchanged (no state)'),
+    'unchanged'  => t('Unchanged (no state)'),*/
     // TODO: Add support to these states:
     /*
     'relevant'   => t('Relevant'),
@@ -134,12 +136,12 @@ function conditional_fields_effects() {
 function conditional_fields_conditions($checkboxes = TRUE) {
   // Supported by States API.
   $conditions = array(
-    '!empty'     => t('Filled'),
-    'empty'      => t('Empty'),
-    'touched'    => t('Touched'),
-    '!touched'   => t('Untouched'),
-    'focused'    => t('Focused'),
-    '!focused'   => t('Unfocused'),
+    '!empty' => t('Filled'),
+    'empty' => t('Empty'),
+    'touched' => t('Touched'),
+    '!touched' => t('Untouched'),
+    'focused' => t('Focused'),
+    '!focused' => t('Unfocused'),
   );
 
   if ($checkboxes) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\conditional_fields\Form;
+namespace Drupal\field_states_ui\Form;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\ConfirmFormBase;
@@ -50,7 +50,7 @@ class ConditionalFieldDeleteForm extends ConfirmFormBase {
     }
     $entity = entity_get_form_display($this->entity_type, $this->bundle, 'default');
     $field = $entity->getComponent($this->field_name);
-    unset($field['third_party_settings']['conditional_fields'][$this->uuid]);
+    unset($field['third_party_settings']['field_states_ui'][$this->uuid]);
     $entity->setComponent($this->field_name, $field);
     $entity->save();
     $form_state->setRedirectUrl($this->getCancelUrl());

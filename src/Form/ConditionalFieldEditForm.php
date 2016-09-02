@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\conditional_fields\Form;
+namespace Drupal\field_states_ui\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -24,7 +24,7 @@ class ConditionalFieldEditForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $entity_type = NULL, $bundle = NULL, $field_name = NULL, $uuid = NULL) {
-    module_load_include('inc', 'conditional_fields', 'conditional_fields.conditions');
+    module_load_include('inc', 'field_states_ui', 'field_states_ui.conditions');
 
     if (empty($entity_type) || empty($bundle) || empty($field_name) || empty($uuid)) {
       return $form;
@@ -33,10 +33,10 @@ class ConditionalFieldEditForm extends FormBase {
     $form_display_entity = entity_get_form_display($entity_type, $bundle, 'default');
     $field = $form_display_entity->getComponent($field_name);
 
-    if (empty($field['third_party_settings']['conditional_fields'][$uuid])) {
+    if (empty($field['third_party_settings']['field_states_ui'][$uuid])) {
       return $form;
     }
-    $condition = $field['third_party_settings']['conditional_fields'][$uuid];
+    $condition = $field['third_party_settings']['field_states_ui'][$uuid];
     $settings = $condition['settings'];
     $label = $condition['dependee'];
 
@@ -222,7 +222,7 @@ class ConditionalFieldEditForm extends FormBase {
 
     $entity = entity_get_form_display($values['entity_type'], $values['bundle'], 'default');
     $field = $entity->getComponent($values['field_name']);
-    $new_settings = $field['third_party_settings']['conditional_fields'][$values['uuid']]['settings'];
+    $new_settings = $field['third_party_settings']['field_states_ui'][$values['uuid']]['settings'];
 
     foreach ($values as $key => $value) {
       if (in_array($key, [
@@ -240,7 +240,7 @@ class ConditionalFieldEditForm extends FormBase {
       $new_settings[$key] = $value;
     }
 
-    $field['third_party_settings']['conditional_fields'][$values['uuid']]['settings'] = $new_settings;
+    $field['third_party_settings']['field_states_ui'][$values['uuid']]['settings'] = $new_settings;
     $entity->setComponent($values['field_name'], $field);
     $entity->save();
     $form_state->setRedirect('conditional_fields');
@@ -250,7 +250,7 @@ class ConditionalFieldEditForm extends FormBase {
    * Builds Edit Context Settings block.
    */
   public function buildEditContextSettings(array $form, FormStateInterface $form_state, $condition) {
-    module_load_include('inc', 'conditional_fields', 'conditional_fields.conditions');
+    module_load_include('inc', 'field_states_ui', 'field_states_ui.conditions');
     $label = array_key_exists('dependee', $condition) ? $condition['dependee'] : '?';
     $settings = array_key_exists('settings', $condition) ? $condition['settings'] : [];
 
@@ -410,7 +410,7 @@ class ConditionalFieldEditForm extends FormBase {
    * Builds View Context Settings block.
    */
   public function buildViewContextSettings(array $form, FormStateInterface $form_state, $condition) {
-    module_load_include('inc', 'conditional_fields', 'conditional_fields.conditions');
+    module_load_include('inc', 'field_states_ui', 'field_states_ui.conditions');
     $settings = array_key_exists('settings', $condition) ? $condition['settings'] : [];
 
     $form['element_view_per_role'] = [
