@@ -133,40 +133,31 @@ function conditional_fields_effects() {
 /**
  * List of states of a dependee field that may be used to evaluate a condition.
  */
-function conditional_fields_conditions($checkboxes = TRUE) {
+function field_states_ui_conditions($checkboxes = TRUE) {
   // Supported by States API.
   $conditions = array(
-    '!empty' => t('Filled'),
+    'filled' => t('Filled'),
     'empty' => t('Empty'),
+    // TODO Provide support for these conditions.
+    /*'expanded' => t('Expanded'),
+    'collapsed' => t('Collapsed'),
+    'relevant'   => t('Relevant'),
+    'irrelevant'  => t('Irrelevant'),
+    'valid'      => t('Valid'),
+    'invalid'     => t('Invalid'),
     'touched' => t('Touched'),
-    '!touched' => t('Untouched'),
-    'focused' => t('Focused'),
-    '!focused' => t('Unfocused'),
+    'untouched' => t('Untouched'),
+    'readwrite'  => t('Read/Write'),
+    'readonly'   => t('Read Only'),*/
   );
 
   if ($checkboxes) {
     // Relevant only if dependee is a list of checkboxes.
     $conditions['checked'] = t('Checked');
-    $conditions['!checked'] = t('Unchecked');
+    $conditions['unchecked'] = t('Unchecked');
   }
 
   $conditions['value'] = t('Value');
-
-  // TODO: Add support from Conditional Fields to these conditions
-  /*
-  '!disabled'  => t('Enabled'),
-  'disabled'   => t('Disabled'),
-  'required'   => t('Required'),
-  '!required'  => t('Optional'),
-  'relevant'   => t('Relevant'),
-  '!relevant'  => t('Irrelevant'),
-  'valid'      => t('Valid'),
-  '!valid'     => t('Invalid'),
-  '!readonly'  => t('Read/Write'),
-  'readonly'   => t('Read Only'),
-  '!collapsed' => t('Expanded'),
-  'collapsed'  => t('Collapsed'),
-   */
 
   // Allow other modules to modify the conditions.
   \Drupal::moduleHandler()->alter('conditional_fields_conditions', $conditions);

@@ -21,8 +21,8 @@ class Visible extends FieldStateBase {
    */
   public function applyState(array &$states, FormStateInterface $form_state, array $context) {
     $states['visible'] = [
-      ":input[name^='{$this->configuration['target']}']" => [
-        $this->configuration['comparison'] => $this->configuration['value'],
+      ':input[name="' . $this->configuration['dependee'] . '"]' => [
+        $this->configuration['settings']['condition'] => $this->configuration['settings']['value'],
       ],
     ];
     return TRUE;

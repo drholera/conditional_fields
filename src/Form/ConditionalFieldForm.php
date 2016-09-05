@@ -232,7 +232,7 @@ class ConditionalFieldForm extends FormBase {
 
     // Build list of conditions.
     $conditions = [];
-    foreach (conditional_fields_conditions() as $condition => $label) {
+    foreach (field_states_ui_conditions() as $condition => $label) {
       $conditions[$condition] = $condition == 'value' ? $this->t('has value...') : $this->t('is !label', ['!label' => $label]);
     }
 

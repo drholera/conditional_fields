@@ -91,13 +91,16 @@ abstract class FieldStateBase extends PluginBase implements FieldStateInterface,
    */
   public function setConfiguration(array $configuration) {
     $configuration += [
-      'data' => [],
       'uuid' => '',
+      'entity_type' => '',
+      'bundle' => '',
+      'dependee' => '',
+      'settings' => [],
     ];
-    $this->configuration = $configuration['data'] + $this->defaultConfiguration();
-    if (!$this->configuration['value']) {
-      $this->configuration['value'] = TRUE;
+    if (!$this->configuration['settings']['value']) {
+      $this->configuration['settings']['value'] = TRUE;
     }
+    // TODO There is a generated uuid in settings key.
     $this->uuid = $configuration['uuid'] ? $configuration['uuid'] : \Drupal::service('uuid')->generate();
     return $this;
   }

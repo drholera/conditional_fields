@@ -72,7 +72,7 @@ class ConditionalFieldEditForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Condition'),
       '#description' => $this->t('The condition that should be met by the dependee %field to trigger the dependency.', ['%field' => $label]),
-      '#options' => conditional_fields_conditions(),
+      '#options' => field_states_ui_conditions(),
       //$checkboxes),
       '#default_value' => array_key_exists('condition', $settings) ? $settings['condition'] : '',
       '#required' => TRUE,
