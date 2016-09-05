@@ -228,7 +228,7 @@ class ConditionalFieldForm extends FormBase {
     /* Row for creating new condition. */
 
     // Build list of states.
-    $states = conditional_fields_states();
+    $states = field_states_ui_states();
 
     // Build list of conditions.
     $conditions = [];

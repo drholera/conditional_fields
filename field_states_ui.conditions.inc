@@ -7,35 +7,33 @@
 /**
  * Builds a list of supported states that may be applied to a dependent field.
  */
-function conditional_fields_states() {
+function field_states_ui_states() {
   $states = array(
+    'field_state_enabled'  => t('Enabled'),
+    'field_state_disabled'   => t('Disabled'),
+
+    'field_state_required'   => t('Required'),
+    'field_state_optional'  => t('Optional'),
+
     'field_state_visible' => t('Visible'),
     'field_state_invisible' => t('Invisible'),
-    // Supported by States API.
-    /*'visible'    => t('Visible'),
-    '!visible'   => t('Invisible'),
-    '!empty'     => t('Filled with a value'),
-    'empty'      => t('Emptied'),
-    '!disabled'  => t('Enabled'),
-    'disabled'   => t('Disabled'),
-    'checked'    => t('Checked'),
-    '!checked'   => t('Unchecked'),
-    'required'   => t('Required'),
-    '!required'  => t('Optional'),
-    '!collapsed' => t('Expanded'),
-    'collapsed'  => t('Collapsed'),
-    // Supported by Conditional Fields.
-    'unchanged'  => t('Unchanged (no state)'),*/
-    // TODO: Add support to these states:
+
+    'field_state_checked'    => t('Checked'),
+    'field_state_unchecked'   => t('Unchecked'),
+
+    'field_state_expanded' => t('Expanded'),
+    'field_state_collapsed'  => t('Collapsed'),
+
+    // TODO: Add support to these states (plugins):
     /*
-    'relevant'   => t('Relevant'),
-    '!relevant'  => t('Irrelevant'),
-    'valid'      => t('Valid'),
-    '!valid'     => t('Invalid'),
-    'touched'    => t('Touched'),
-    '!touched'   => t('Untouched'),
-    '!readonly'  => t('Read/Write'),
-    'readonly'   => t('Read Only'),
+    'field_state_relevant'   => t('Relevant'),
+    'field_state_irrelevant'  => t('Irrelevant'),
+    'field_state_valid'      => t('Valid'),
+    'field_state_invalid'     => t('Invalid'),
+    'field_state_touched'    => t('Touched'),
+    'field_state_untouched'   => t('Untouched'),
+    'field_state_readwrite'  => t('Read/Write'),
+    'field_state_readonly'   => t('Read Only'),
     */
   );
 

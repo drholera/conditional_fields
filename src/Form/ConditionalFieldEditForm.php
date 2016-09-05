@@ -258,7 +258,7 @@ class ConditionalFieldEditForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Form state'),
       '#description' => $this->t('The Javascript form state that is applied to the dependent field when the condition is met. Note: this has no effect on server-side logic and validation.'),
-      '#options' => conditional_fields_states(),
+      '#options' => field_states_ui_states(),
       '#default_value' => array_key_exists('state', $condition) ? $condition['state'] : 0,
       '#required' => TRUE,
       '#ajax' => [
