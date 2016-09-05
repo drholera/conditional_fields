@@ -20,10 +20,9 @@ class Collapsed extends FieldStateBase {
    * {@inheritdoc}
    */
   public function applyState(array &$states, FormStateInterface $form_state, array $context) {
-    // TODO Recheck.
-    $states['collapsed'] = [
-      ":input[name^='{$this->configuration['target']}']" => [
-        $this->configuration['comparison'] => $this->configuration['value'],
+    $states['expanded'] = [
+      ':input[name="' . $this->configuration['dependee'] . '"]' => [
+        $this->configuration['settings']['condition'] => $this->configuration['settings']['value'],
       ],
     ];
     return TRUE;

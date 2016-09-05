@@ -21,8 +21,8 @@ class Invisible extends FieldStateBase {
    */
   public function applyState(array &$states, FormStateInterface $form_state, array $context) {
     $states['invisible'] = [
-      ":input[name^='{$this->configuration['target']}']" => [
-        $this->configuration['comparison'] => $this->configuration['value'],
+      ':input[name="' . $this->configuration['dependee'] . '"]' => [
+        $this->configuration['settings']['condition'] => $this->configuration['settings']['value'],
       ],
     ];
     return TRUE;

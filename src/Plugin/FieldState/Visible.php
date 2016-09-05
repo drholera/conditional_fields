@@ -20,6 +20,7 @@ class Visible extends FieldStateBase {
    * {@inheritdoc}
    */
   public function applyState(array &$states, FormStateInterface $form_state, array $context) {
+    // FIXME: expl, for title: name="fieldname[0][value]".
     $states['visible'] = [
       ':input[name="' . $this->configuration['dependee'] . '"]' => [
         $this->configuration['settings']['condition'] => $this->configuration['settings']['value'],
